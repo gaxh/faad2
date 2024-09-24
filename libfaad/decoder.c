@@ -380,7 +380,10 @@ long NeAACDecInit(NeAACDecHandle hpDecoder,
         hDecoder->fb = ssr_filter_bank_init(hDecoder->frameLength/SSR_BANDS);
     else
 #endif
+    {
+        filter_bank_end(hDecoder->fb);
         hDecoder->fb = filter_bank_init(hDecoder->frameLength);
+    }
 
 #ifdef LD_DEC
     if (hDecoder->object_type == LD)
